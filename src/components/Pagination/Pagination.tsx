@@ -3,14 +3,14 @@ import React from 'react';
 interface Props {
   currentPage: number;
   totalPages: number;
-  onePageChange: (page: number) => void;
+  onPageChange: (page: number) => void;
   /*функція, яка змінює активну сторінку*/
 }
 
 export const Pagination: React.FC<Props> = ({
   currentPage,
   totalPages,
-  onePageChange,
+  onPageChange,
 }) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
   /*Створюємо масив сторінок: [1, 2, 3, ..., totalPages]*/
@@ -26,7 +26,7 @@ export const Pagination: React.FC<Props> = ({
             key={page}
             className={`page-item ${page === currentPage ? 'active' : ''}`}
           >
-            <button className="page-link" onClick={() => onePageChange(page)}>
+            <button className="page-link" onClick={() => onPageChange(page)}>
               {page}
             </button>
           </li>

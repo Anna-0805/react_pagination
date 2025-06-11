@@ -12,12 +12,12 @@ export const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   /*яка сторінка зараз активна (починаємо з 1)*/
 
-  const totalItams = items.length;
+  const totalItems = items.length;
   /** скільки всього елементів. */
-  const totalPages = Math.ceil(totalItams / itemsPerPage);
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
   /* скільки всього сторінок (округлено вгору).*/
 
-  const visiableItems = items.slice(
+  const visibleItems = items.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
@@ -37,7 +37,7 @@ export const App: React.FC = () => {
 
       <p className="lead" data-cy="info">
         Page {currentPage} (items {(currentPage - 1) * itemsPerPage + 1} -{' '}
-        {Math.min(currentPage * itemsPerPage, totalItams)} of {totalItams})
+        {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems})
       </p>
 
       <div className="form-group row">
@@ -63,11 +63,11 @@ export const App: React.FC = () => {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onePageChange={setCurrentPage}
+        onPageChange={setCurrentPage}
       />
 
       <ul>
-        {visiableItems.map(item => (
+        {visibleItems.map(item => (
           <li key={item}>{item}</li>
         ))}
       </ul>
